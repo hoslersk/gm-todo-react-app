@@ -43,6 +43,7 @@ class TodosPage extends React.Component {
     };
 
     this.addTodo = this.addTodo.bind(this);
+    this.getTodos = this.getTodos.bind(this);
     this.postTodo = this.postTodo.bind(this);
     this.setFilterBy = this.setFilterBy.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
@@ -52,7 +53,17 @@ class TodosPage extends React.Component {
    * Component did mount
    */
   componentDidMount() {
-    api('GET', null, this.updateTodos);
+    api('GET', null, this.getTodos);
+  }
+
+  /**
+   * Get todos
+   *
+   * @param  {object} json - Resulting JSON from fetch
+   */
+  getTodos(json) {
+    const todos = JSON.parse(json);
+    this.updateTodos(todos);
   }
 
   /**
