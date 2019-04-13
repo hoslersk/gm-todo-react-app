@@ -15,6 +15,10 @@ const todos = [
   { id: 2, text: 'Pick up groceries', status: 'complete' }
 ];
 
+function filteredTodos() {
+  return todos.filter(todo => todo.status !== 'deleted');
+}
+
 app.get('/', (req, res) => {
   const bundle = `//${req.hostname}:8080/public/bundle.js`;
 
@@ -22,7 +26,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/todos', (req, res) => {
-  res.json(JSON.stringify(todos));
+  res.json(JSON.stringify(filteredTodos()));
 });
 
 app.get('/todos/:id', (req, res) => {
@@ -48,11 +52,23 @@ app.post('/todos', (req, res) => {
 
   todos.push(newTodo);
 
-  res.status(201).json(todos);
+  res.status(201).json(filteredTodos());
 });
 
 app.delete('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  const index = todos.findIndex(todo => {
+    return todo.id === parseInt(req.params.id);
+  });
+
+  console.log('deleting... index', index);
+
+  if (index !== -1) {
+    todos[index].status = 'deleted';
+    res.status(200).json(filteredTodos());
+  }
+  else {
+    res.status(404).send({ message: 'resource not found' });
+  }
 });
 
 app.put('/todos/:id', (req, res) => {
