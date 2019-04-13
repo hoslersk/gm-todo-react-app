@@ -61,17 +61,18 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param  {object} json - Resulting JSON from fetch
    */
   const putTodo = json => {
-    const index = todos.findIndex(todo => {
-      return todo.id === json.id;
-    });
-
-    updateTodos(
-      [
-        ...todos.slice(0, index),
-        json,
-        ...todos.slice(index + 1),
-      ]
-    );
+    // const index = todos.findIndex(todo => {
+    //   return todo.id === json.id;
+    // });
+    //
+    // updateTodos(
+    //   [
+    //     ...todos.slice(0, index),
+    //     json,
+    //     ...todos.slice(index + 1),
+    //   ]
+    // );
+    updateTodos(json);
   }
 
   /**
@@ -123,6 +124,7 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
 
       return (
         <Todo
+          id={todo.id}
           key={todo.id}
           filtered={filtered}
           onClickDelete={onClickDelete.bind(this, todo)}

@@ -25,15 +25,23 @@ const defaultProps = {
  * Link component
  * @returns {ReactElement}
  */
-const TodoLink = ({ text, onClick }) => {
+const TodoLink = ({ id, text, onClick, status }) => {
   /**
    * Base CSS class
    */
   const baseCls = 'todo-link';
 
   return (
-    <div className={baseCls} onClick={onClick}>
-      {text}
+    <div className={baseCls}>
+      <label htmlFor={`id-${id}-toggle`}>
+        <input
+          checked={status === 'complete'}
+          id={`id-${id}-toggle`}
+          type="checkbox"
+          onChange={onClick}
+        />
+        {text}
+      </label>
     </div>
   );
 };

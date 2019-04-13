@@ -60,8 +60,6 @@ app.delete('/todos/:id', (req, res) => {
     return todo.id === parseInt(req.params.id);
   });
 
-  console.log('deleting... index', index);
-
   if (index !== -1) {
     todos[index].status = 'deleted';
     res.status(200).json(filteredTodos());
@@ -72,7 +70,23 @@ app.delete('/todos/:id', (req, res) => {
 });
 
 app.put('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  const index = todos.findIndex(todo => {
+    return todo.id === parseInt(req.params.id);
+  });
+
+  if (index !== -1) {
+    const { id, ...alterableData } = req.body.data;
+
+    todos[index] = {
+      id: todos[index].id,
+      ...alterableData,
+    }
+    
+    res.status(200).json(filteredTodos());
+  }
+  else {
+    res.status(404).send({ message: 'resource not found' });
+  }
 });
 
 // Node server.
