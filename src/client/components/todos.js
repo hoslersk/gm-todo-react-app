@@ -100,6 +100,19 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
   }
 
   /**
+   * Click handler for clicking on the todo
+   * Toggles status state of Todo
+   *
+   * @param {object} todo - Todo object
+   */
+  const onClickArchive = todo => {
+    const newTodo = Object.assign({}, todo);
+    newTodo.archive = !todo.archive;
+
+    api('PUT', newTodo, putTodo);
+  }
+
+  /**
    * Renders All Todos
    *
    * @returns {Array} - Returns an array of Todo React Elements
@@ -113,20 +126,25 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
       let filtered;
       switch (filterBy) {
         case 'active':
-          filtered = todo.status === 'complete';
+          filtered = todo.status === 'complete' || todo.archive === true;
+          break;
+        case 'archived':
+          filtered = todo.archive === false;
           break;
         case 'completed':
-          filtered = todo.status !== 'complete';
+          filtered = todo.status !== 'complete' || todo.archive === true;
           break;
         default:
-          filtered = false;
+          filtered = todo.archive === true;
       }
 
       return (
         <Todo
+          archived={todo.archive}
           id={todo.id}
           key={todo.id}
           filtered={filtered}
+          onClickArchive={onClickArchive.bind(this, todo)}
           onClickDelete={onClickDelete.bind(this, todo)}
           onClickTodo={onClickTodo.bind(this, todo)}
           status={todo.status}
