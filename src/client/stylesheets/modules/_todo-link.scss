@@ -48,4 +48,9 @@
       width: 1.25rem;
     }
   }
+
+  &__checkbox:focus ~ &__input-label:before {
+    border-style: solid;
+    background-image: linear-gradient(map-get($colors, gray), map-get($colors, ui-transparent));
+  }
 }
