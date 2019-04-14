@@ -37,7 +37,29 @@ $colors: (
   lightgray: $lightgray,
 );
 
-// Border radius.
+// Content gutter width.
+$gutter-width: 15px;
+
+// Container max-widths.
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);
+
+// Breakpoints.
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// Borders.
+$border-width: 1px;
+$border-color: map-get($colors, lightgray);
 $border-radius: 0.25rem;
 
 // Button padding.

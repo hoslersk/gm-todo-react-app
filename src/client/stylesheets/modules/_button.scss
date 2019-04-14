@@ -6,6 +6,7 @@
     background-color: map-get($colors, ui-button-bg);
     color: map-get($colors, ui-light);
     transition: background-color $trans-duration ease;
+    font-size: 1rem;
 
     &:hover,
     &:focus {

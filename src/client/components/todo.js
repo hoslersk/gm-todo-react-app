@@ -53,12 +53,14 @@ const Todo = ({ archived, filtered, id, onClickArchive, onClickDelete, onClickTo
 
   return (
     <li className={todoCls}>
-      <TodoLink id={id} text={text} onClick={onClickTodo} status={status} />
-
-      {
-        status === 'complete' &&
-        <Button onClick={onClickArchive} text={archived ? 'Unarchive' : 'Archive'}  />
-      }
+      <TodoLink
+        archived={archived}
+        id={id}
+        text={text}
+        onClick={onClickTodo}
+        onClickArchive={onClickArchive}
+        status={status}
+      />
 
       <Button onClick={onClickDelete} text={deleteActionText} type="muted" />
     </li>

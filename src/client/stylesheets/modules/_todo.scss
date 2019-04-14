@@ -1,10 +1,12 @@
 // Todo module.
 .todo {
   cursor: pointer;
-
-  &--status-complete {
-    text-decoration: line-through;
-  }
+  border-bottom: $border-width solid $border-color;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.75rem;
 
   &--filtered {
     display: none;
