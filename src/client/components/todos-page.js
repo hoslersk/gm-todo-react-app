@@ -44,8 +44,9 @@ class TodosPage extends React.Component {
     this.addTodo = this.addTodo.bind(this);
     this.getTodos = this.getTodos.bind(this);
     this.postTodo = this.postTodo.bind(this);
-    this.setFilterBy = this.setFilterBy.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
+    this.bulkCompleteTodos = this.bulkCompleteTodos.bind(this);
+    this.bulkArchiveTodos = this.bulkArchiveTodos.bind(this);
   }
 
   /**
@@ -90,15 +91,6 @@ class TodosPage extends React.Component {
   }
 
   /**
-   * Set filterBy state
-   *
-   * @param {string} filterBy - filterBy state
-   */
-  setFilterBy(filterBy) {
-    this.setState({ filterBy });
-  }
-
-  /**
    * Update todos array state
    *
    * @param  {Array} todos - Array of todo objects
@@ -108,15 +100,50 @@ class TodosPage extends React.Component {
   }
 
   /**
+   * Bulk update "active" status todos to "complete"
+   *
+   */
+  bulkCompleteTodos() {
+    const activeTodos = this.state.todos.filter(todo => todo.status === 'active');
+    const newlyCompletedTodos = activeTodos.map(({ status, ...otherData }) =>
+      ({ status: 'complete', ...otherData })
+    );
+
+    api('PATCH', newlyCompletedTodos, this.updateTodos);
+  }
+
+  /**
+   * Bulk update "complete" state todos to archive: true
+   *
+   */
+  bulkArchiveTodos() {
+    const completedTodos = this.state.todos.filter(todo => todo.status === 'complete');
+    const newlyArchivedTodos = completedTodos.map(({ archive, ...otherData }) =>
+      ({ archive: true, ...otherData })
+    );
+
+    api('PATCH', newlyArchivedTodos, this.updateTodos);
+  }
+
+  /**
    * Render
    * @returns {ReactElement}
    */
   render() {
-    const { filterBy } = this.props.match.params;
+    const { filterBy } = this.props.match.params,
+          activeTaskCount = this.state.todos.filter(todo => todo.status === 'active').length;
 
     return (
       <div className={this.baseCls}>
-        <Navbar filterBy={filterBy} />
+        <Navbar bulkArchiveTodos={this.bulkArchiveTodos} filterBy={filterBy} />
+
+        {
+          (filterBy === 'active' || !filterBy) && !!activeTaskCount &&
+          <div>
+            {activeTaskCount} task{activeTaskCount === 1 ? '' : 's'} remaining
+            <Button text="Complete All" onClick={this.bulkCompleteTodos}/>
+          </div>
+        }
 
         <TodoForm onSubmit={this.addTodo} />
 

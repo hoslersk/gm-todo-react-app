@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import Button from './button';
+
 const noop = () => {};
 
 /**
@@ -26,7 +28,7 @@ const defaultProps = {
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = ({ filterBy, onClickFilter }) => {
+const Navbar = ({ bulkArchiveTodos, filterBy, onClickFilter }) => {
   /**
    * Base CSS class
    */
@@ -60,6 +62,7 @@ const Navbar = ({ filterBy, onClickFilter }) => {
       <NavLink className={archivedLinkCls} to="/archived">
         Archived
       </NavLink>
+      <Button text="Archive all completed" onClick={bulkArchiveTodos} />
     </div>
   );
 }

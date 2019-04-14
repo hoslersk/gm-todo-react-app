@@ -69,6 +69,23 @@ app.delete('/todos/:id', (req, res) => {
   }
 });
 
+app.patch('/todos', (req, res) => {
+  for (var i = 0; i < req.body.data.length; i++) {
+    for (var j = 0; j < todos.length; j++) {
+      if (req.body.data[i].id === todos[j].id) {
+        const { id, ...alterableData } = req.body.data[i];
+
+        todos[j] = {
+          id: todos[j].id,
+          ...alterableData,
+        }
+      }
+    }
+  }
+
+  res.status(200).json(filteredTodos());
+});
+
 app.put('/todos/:id', (req, res) => {
   const index = todos.findIndex(todo => {
     return todo.id === parseInt(req.params.id);
