@@ -44,14 +44,23 @@ const Todo = ({ archived, filtered, id, onClickArchive, onClickDelete, onClickTo
     + (status === 'complete' ? ' todo--status-complete' : '')
     + (filtered ? ' todo--filtered' : '');
 
+  const deleteActionText = (
+    <div>
+      <span aria-hidden="true">✕</span>
+      <span className="sr-only">Delete</span>
+    </div>
+  )
+
   return (
     <li className={todoCls}>
       <TodoLink id={id} text={text} onClick={onClickTodo} status={status} />
+
       {
         status === 'complete' &&
-        <Button text={archived ? 'Unarchive' : 'Archive'} onClick={onClickArchive} />
+        <Button onClick={onClickArchive} text={archived ? 'Unarchive' : 'Archive'}  />
       }
-      <Button text="Delete" onClick={onClickDelete} />
+
+      <Button onClick={onClickDelete} text={deleteActionText} type="muted" />
     </li>
   );
 }

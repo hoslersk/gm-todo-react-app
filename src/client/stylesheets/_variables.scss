@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
 
-// Font family
+// Font family.
 $font-family-sans-serif: 'Roboto', sans-serif;
 
-// Font weights
+// Font weights.
 $font-weight-light: 300;
 $font-weight-normal: 400;
 $font-weight-bold: 700;
 
-// Application font weights
+// Application font weights.
 $font-weights: (
   light: $font-weight-light,
   normal: $font-weight-normal,
@@ -30,11 +30,19 @@ $colors: (
   ui-transparent: $transparent,
   ui-light: $white,
   ui-dark: $black,
+  ui-button-bg: $green,
   primary: $blue,
   darkgray: $darkgray,
   gray: $gray,
-  lightgray: $lightgray
+  lightgray: $lightgray,
 );
 
-// Transition duration
+// Border radius.
+$border-radius: 0.25rem;
+
+// Button padding.
+$button-padding-y: 0.25rem;
+$button-padding-x: 0.75rem;
+
+// Transition duration.
 $trans-duration: 0.3s;

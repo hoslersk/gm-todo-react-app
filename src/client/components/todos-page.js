@@ -134,24 +134,26 @@ class TodosPage extends React.Component {
           activeTaskCount = this.state.todos.filter(todo => todo.status === 'active').length;
 
     return (
-      <div className={this.baseCls}>
+      <div className={TodosPage.baseCls}>
         <Navbar bulkArchiveTodos={this.bulkArchiveTodos} filterBy={filterBy} />
 
-        {
-          (filterBy === 'active' || !filterBy) && !!activeTaskCount &&
-          <div>
-            {activeTaskCount} task{activeTaskCount === 1 ? '' : 's'} remaining
-            <Button text="Complete All" onClick={this.bulkCompleteTodos}/>
-          </div>
-        }
+        <main className="container">
+          {
+            (filterBy === 'active' || !filterBy) && !!activeTaskCount &&
+            <div>
+              {activeTaskCount} task{activeTaskCount === 1 ? '' : 's'} remaining
+              <Button onClick={this.bulkCompleteTodos} text="Complete All" type="link" />
+            </div>
+          }
 
-        <TodoForm onSubmit={this.addTodo} />
+          <TodoForm onSubmit={this.addTodo} />
 
-        <Todos
-          filterBy={filterBy}
-          todos={this.state.todos}
-          updateTodos={this.updateTodos}
-        />
+          <Todos
+            filterBy={filterBy}
+            todos={this.state.todos}
+            updateTodos={this.updateTodos}
+          />
+        </main>
       </div>
     );
   }

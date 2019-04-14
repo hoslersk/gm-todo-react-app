@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -21,20 +21,16 @@ const propTypes = {
  * @returns {ReactElement}
  */
 const App = ({ children }) => {
-  /**
-   * Base CSS class
-   */
-  const baseCls = 'app';
-
   return (
     <BrowserRouter>
-      <div className={baseCls}>
+      <Fragment>
         <Header />
+
         <Switch>
           <Route exact path="/" component={TodosPage} />
           <Route path="/:filterBy" component={TodosPage} />
         </Switch>
-      </div>
+      </Fragment>
     </BrowserRouter>
   );
 };
