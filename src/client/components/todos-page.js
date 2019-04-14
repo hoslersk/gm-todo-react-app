@@ -39,7 +39,6 @@ class TodosPage extends React.Component {
 
     this.state = {
       todos: [],
-      filterBy: null,
     };
 
     this.addTodo = this.addTodo.bind(this);
@@ -113,14 +112,16 @@ class TodosPage extends React.Component {
    * @returns {ReactElement}
    */
   render() {
+    const { filterBy } = this.props.match.params;
+
     return (
       <div className={this.baseCls}>
-        <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
+        <Navbar filterBy={filterBy} />
 
         <TodoForm onSubmit={this.addTodo} />
 
         <Todos
-          filterBy={this.state.filterBy}
+          filterBy={filterBy}
           todos={this.state.todos}
           updateTodos={this.updateTodos}
         />

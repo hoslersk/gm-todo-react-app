@@ -44,31 +44,22 @@ const Navbar = ({ filterBy, onClickFilter }) => {
   return (
     <div className={baseCls}>
       <NavLink
-        to="/"
         activeClassName={`${baseCls}__item--active`}
         className={`${baseCls}__item`}
-        onClick={() => onClickFilter('')}
+        exact
+        to="/"
       >
         All
       </NavLink>
-      <span
-        className={activeLinkCls}
-        onClick={() => onClickFilter('active')}
-      >
+      <NavLink className={activeLinkCls} to="/active">
         Active
-      </span>
-      <span
-        className={completedLinkCls}
-        onClick={() => onClickFilter('completed')}
-      >
+      </NavLink>
+      <NavLink className={completedLinkCls} to="/completed">
         Completed
-      </span>
-      <span
-        className={archivedLinkCls}
-        onClick={() => onClickFilter('archived')}
-      >
+      </NavLink>
+      <NavLink className={archivedLinkCls} to="/archived">
         Archived
-      </span>
+      </NavLink>
     </div>
   );
 }
