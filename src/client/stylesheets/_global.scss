@@ -6,7 +6,7 @@ html {
 
 body {
   background: map-get($colors, ui-light);
-  color: map-get($colors, ui-dark)
+  color: map-get($colors, ui-dark);
   margin: 0;
   font-size: 1rem;
   font-family: $font-family-sans-serif;

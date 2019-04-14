@@ -12,7 +12,6 @@ const noop = () => {};
  */
 const propTypes = {
   filterBy: PropTypes.string,
-  onClickFilter: PropTypes.func,
 };
 
 /**
@@ -21,48 +20,92 @@ const propTypes = {
  */
 const defaultProps = {
   filterBy: '',
-  onClickFilter: noop,
 };
 
 /**
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = ({ bulkArchiveTodos, filterBy, onClickFilter }) => {
+const Navbar = ({ bulkArchiveTodos, filterBy }) => {
   /**
    * Base CSS class
    */
-  const baseCls = 'navbar'
+  const baseCls = 'navbar',
 
-  let activeLinkCls = `${baseCls}__item`;
-  activeLinkCls += filterBy === 'active' ? ` ${baseCls}__item--active` : '';
+        navCls = `${baseCls}__nav container`,
 
-  let completedLinkCls = `${baseCls}__item`;
-  completedLinkCls += filterBy === 'completed' ? ` ${baseCls}__item--active` : '';
+        listCls = `${baseCls}__list`,
 
-  let archivedLinkCls = `${baseCls}__item`;
-  archivedLinkCls += filterBy === 'archived' ? ` ${baseCls}__item--active` : '';
+        listItemCls = `${baseCls}__list-item`,
+
+        navLinkCls = `${baseCls}__nav-link`,
+
+        activeNavLinkCls = `${navLinkCls}--active`,
+
+        buttonCls = `${baseCls}__button`;
+
+  /**
+   * Configs for all nav-links
+   */
+  const navLinksConfig = [
+    {
+      activeClassName: activeNavLinkCls,
+      className: navLinkCls,
+      exact: true,
+      label: 'All',
+      to: '/',
+    },
+    {
+      activeClassName: activeNavLinkCls,
+      className: navLinkCls,
+      exact: true,
+      label: 'Active',
+      to: '/active',
+    },
+    {
+      activeClassName: activeNavLinkCls,
+      className: navLinkCls,
+      exact: true,
+      label: 'Completed',
+      to: '/completed',
+    },
+    {
+      activeClassName: activeNavLinkCls,
+      className: navLinkCls,
+      exact: true,
+      label: 'Archived',
+      to: '/archived',
+    },
+  ];
+
+  /**
+   * Renders All List Items
+   *
+   * @returns {Array} - Returns an array of li React Elements
+   */
+  const renderListItems = () => {
+    return navLinksConfig.map(({ activeClassName, className, exact, label, to }) =>
+      <li className={listItemCls} key={label.toLowerCase()}>
+        <NavLink {...{ activeClassName, className, exact, to }}>
+          {label}
+        </NavLink>
+      </li>
+    );
+  }
 
   return (
     <div className={baseCls}>
-      <NavLink
-        activeClassName={`${baseCls}__item--active`}
-        className={`${baseCls}__item`}
-        exact
-        to="/"
-      >
-        All
-      </NavLink>
-      <NavLink className={activeLinkCls} to="/active">
-        Active
-      </NavLink>
-      <NavLink className={completedLinkCls} to="/completed">
-        Completed
-      </NavLink>
-      <NavLink className={archivedLinkCls} to="/archived">
-        Archived
-      </NavLink>
-      <Button text="Archive all completed" onClick={bulkArchiveTodos} />
+      <nav className={navCls}>
+        <ul className={listCls}>
+          {renderListItems()}
+        </ul>
+
+        <Button
+          className={buttonCls}
+          onClick={bulkArchiveTodos}
+          text="Archive all completed"
+        />
+      </nav>
     </div>
   );
 }

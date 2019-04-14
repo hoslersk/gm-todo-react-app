@@ -1,10 +1,31 @@
 // Navbar module
 .navbar {
-  &__item {
-    text-decoration: none;
+  background-color: map-get($colors, lightgray);
+  display: flex;
+  padding: 0.75rem 0;
+
+  &__nav,
+  &__list {
+    display: flex;
   }
 
-  &__item--active {
-    font-weight: 700;
+  &__nav {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__nav-link {
+    color: map-get($colors, gray);
+    text-decoration: none;
+    font-size: 1.125rem;
+    margin-right: 1rem;
+    font-weight: map-get($font-weights, bold);
+    transition: color $trans-duration ease;
+
+    &--active,
+    &:hover,
+    &:focus {
+      color: map-get($colors, darkgray);
+    }
   }
 }
