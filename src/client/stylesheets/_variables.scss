@@ -1,4 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+// Font family
+$font-family-sans-serif: 'Roboto', sans-serif;
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// Application font weights
+$font-weights: (
+  light: $font-weight-light,
+  normal: $font-weight-normal,
+  bold: $font-weight-bold,
+);
+
 // Colors.
+$black: #000000;
+$white: #ffffff;
+$transparent: transparent;
 $blue: #348dfc;
 $green: #10bb07;
 $darkgray: #7b7b7b;
@@ -7,9 +27,9 @@ $lightgray: #e7e7e7;
 
 // Application colors.
 $colors: (
-  ui-transparent: transparent,
-  ui-light: white,
-  ui-dark: black,
+  ui-transparent: $transparent,
+  ui-light: $white,
+  ui-dark: $black,
   primary: $blue,
   darkgray: $darkgray,
   gray: $gray,
