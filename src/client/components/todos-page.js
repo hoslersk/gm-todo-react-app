@@ -180,7 +180,10 @@ class TodosPage extends React.Component {
             />
           }
 
-          <TodoForm onSubmit={this.addTodo} />
+          {
+            (filterBy !== 'completed' && filterBy !== 'archived') &&
+            <TodoForm onSubmit={this.addTodo} />
+          }
 
           <Todos
             filterBy={filterBy}
