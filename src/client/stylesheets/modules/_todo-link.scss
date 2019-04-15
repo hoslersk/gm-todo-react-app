@@ -4,11 +4,15 @@
   display: flex;
   align-items: center;
 
+  &__input-label,
+  &__text {
+    margin-right: 1rem;
+    color: map-get($colors, darkgray);
+  }
+
   &__input-label {
     position: relative;
-    margin-right: 1rem;
     padding-left: 5rem;
-    color: map-get($colors, darkgray);
 
     &:before {
       content: '';

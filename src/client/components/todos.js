@@ -42,16 +42,6 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param  {object} json - Resulting JSON from fetch
    */
   const deleteTodo = json => {
-    // const index = todos.findIndex(todo => {
-    //   return todo.id === json.id;
-    // });
-
-    // updateTodos(
-    //   [
-    //     ...todos.slice(0, index),
-    //     ...todos.slice(index + 1),
-    //   ]
-    // );
     updateTodos(json);
   }
 
@@ -61,17 +51,6 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    * @param  {object} json - Resulting JSON from fetch
    */
   const putTodo = json => {
-    // const index = todos.findIndex(todo => {
-    //   return todo.id === json.id;
-    // });
-    //
-    // updateTodos(
-    //   [
-    //     ...todos.slice(0, index),
-    //     json,
-    //     ...todos.slice(index + 1),
-    //   ]
-    // );
     updateTodos(json);
   }
 

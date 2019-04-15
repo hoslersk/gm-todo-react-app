@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Fragment } from 'react';
 import Button from './button';
 
 const noop = () => {};
@@ -34,6 +34,8 @@ const TodoLink = ({ archived, id, text, onClick, onClickArchive, status }) => {
 
         inputLabelCls = `${baseCls}__input-label`,
 
+        textCls = `${baseCls}__text`,
+
         checkboxCls = `${baseCls}__checkbox`,
 
         archiveButtonCls = `${baseCls}__archive-button`;
@@ -42,16 +44,22 @@ const TodoLink = ({ archived, id, text, onClick, onClickArchive, status }) => {
 
   return (
     <div className={baseCls}>
-      <input
-        checked={status === 'complete'}
-        className={checkboxCls}
-        id={`id-${id}-toggle`}
-        type="checkbox"
-        onChange={onClick}
-      />
-      <label className={inputLabelCls} htmlFor={`id-${id}-toggle`}>
-        {text}
-      </label>
+      {
+        archived ?
+          <span className={textCls}>{text}</span> :
+          <Fragment>
+            <input
+              checked={status === 'complete'}
+              className={checkboxCls}
+              id={`id-${id}-toggle`}
+              type="checkbox"
+              onChange={onClick}
+            />
+            <label className={inputLabelCls} htmlFor={`id-${id}-toggle`}>
+              {text}
+            </label>
+          </Fragment>
+      }
 
       {
         status === 'complete' &&
