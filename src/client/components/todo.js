@@ -46,10 +46,6 @@ const Todo = ({ archived, filtered, id, onClickArchive, onClickDelete, onClickTo
    */
   const baseCls = 'todo',
 
-        todoCls = baseCls
-          + (status === 'complete' ? ' todo--status-complete' : '')
-          + (filtered ? ' todo--filtered' : ''),
-
         deleteButtonCls = `${baseCls}__delete-button`,
 
         mobileActionsCls = `${baseCls}__mobile-actions`,
@@ -66,7 +62,7 @@ const Todo = ({ archived, filtered, id, onClickArchive, onClickDelete, onClickTo
   )
 
   return (
-    <li className={todoCls}>
+    <li className={baseCls}>
       <TodoLink
         archived={archived}
         archiveButtonText={archiveButtonText}

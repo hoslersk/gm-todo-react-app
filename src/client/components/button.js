@@ -8,6 +8,7 @@ const noop = () => {};
  * @private
  */
 const propTypes = {
+  className: PropTypes.string,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.node,

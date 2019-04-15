@@ -13,10 +13,6 @@
     align-items: flex-start;
   }
 
-  &--filtered {
-    display: none;
-  }
-
   &__delete-button {
     @media (max-width: map-get($breakpoints, md)) {
       display: none;
