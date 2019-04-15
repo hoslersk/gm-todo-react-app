@@ -10,7 +10,9 @@ const Header = () => {
    * @returns {ReactElement}
    */
   const baseCls = 'header',
+
         containerCls = `${baseCls}__container container`,
+        
         linkCls = `${baseCls}__link`
 
   return (

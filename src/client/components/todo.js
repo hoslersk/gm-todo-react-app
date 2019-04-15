@@ -11,7 +11,12 @@ const noop = () => {};
  * @private
  */
 const propTypes = {
+  archived: PropTypes.bool,
   filtered: PropTypes.bool,
+  id: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   onClickDelete: PropTypes.func,
   onClickTodo: PropTypes.func,
   status: PropTypes.string,
@@ -23,6 +28,7 @@ const propTypes = {
  * @private
  */
 const defaultProps = {
+  archived: false,
   filtered: false,
   onClickDelete: noop,
   onClickTodo: noop,

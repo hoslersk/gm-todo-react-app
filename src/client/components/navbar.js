@@ -11,6 +11,8 @@ const noop = () => {};
  * @private
  */
 const propTypes = {
+  bulkArchiveTodos: PropTypes.func,
+  completedTodosCount: PropTypes.number,
   filterBy: PropTypes.string,
 };
 
@@ -19,6 +21,8 @@ const propTypes = {
  * @private
  */
 const defaultProps = {
+  bulkArchiveTodos: noop,
+  completedTodosCount: 0,
   filterBy: '',
 };
 

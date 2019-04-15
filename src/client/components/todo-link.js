@@ -9,7 +9,15 @@ const noop = () => {};
  * @private
  */
 const propTypes = {
+  archive: PropTypes.bool,
+  archiveButtonText: PropTypes.node,
+  id: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   onClick: PropTypes.func,
+  onClickArchive: PropTypes.func,
+  status: PropTypes.string,
   text: PropTypes.string,
 };
 
@@ -18,7 +26,11 @@ const propTypes = {
  * @private
  */
 const defaultProps = {
+  archive: false,
+  archiveButtonText: '',
   onClick: noop,
+  onClickArchive: noop,
+  status: '',
   text: '',
 };
 
@@ -26,7 +38,7 @@ const defaultProps = {
  * Link component
  * @returns {ReactElement}
  */
-const TodoLink = ({ archived, archiveButtonText, id, text, onClick, onClickArchive, status }) => {
+const TodoLink = ({ archived, archiveButtonText, id, onClick, onClickArchive, status, text }) => {
   /**
    * Base CSS class
    */
