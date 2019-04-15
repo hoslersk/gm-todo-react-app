@@ -126,14 +126,26 @@ class TodosPage extends React.Component {
     api('PATCH', newlyArchivedTodos, this.updateTodos);
   }
 
+  /**
+   * Utility to provide number of "active" todos
+   *
+   */
   get activeTodosCount() {
     return this.state.todos.filter(todo => todo.status === 'active').length;
   }
 
+  /**
+   * Utility to provide number of "complete" todos
+   *
+   */
   get completedTodosCount() {
     return this.state.todos.filter(todo => todo.status === 'complete' && todo.archive !== true).length;
   }
 
+  /**
+   * Sort todos so that 'complete' items appear below 'active' items
+   *
+   */
   get sortedTodos() {
     return [...this.state.todos].sort((a, b) => {
       if (a.status === 'active' && b.status === 'complete') return -1;
