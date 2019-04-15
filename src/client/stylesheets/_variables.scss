@@ -64,6 +64,8 @@ $border-radius: 0.25rem;
 
 // Box shadow.
 $box-shadow: 0 0 0 0.2rem rgba(map-get($colors, darkgray), 0.4);
+$input-box-shadow: 0 .5rem 1rem rgba(map-get($colors, gray), 0.4) inset;
+$input-focused-box-shadow: 0 .5rem 1rem rgba(map-get($colors, darkgray), 0.4) inset;
 
 // Button padding.
 $button-padding-y: 0.25rem;

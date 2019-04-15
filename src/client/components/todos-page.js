@@ -126,28 +126,44 @@ class TodosPage extends React.Component {
     api('PATCH', newlyArchivedTodos, this.updateTodos);
   }
 
+  get activeTodosCount() {
+    return this.state.todos.filter(todo => todo.status === 'active').length;
+  }
+
+  get completedTodosCount() {
+    return this.state.todos.filter(todo => todo.status === 'complete' && todo.archive !== true).length;
+  }
+
+  get sortedTodos() {
+    return [...this.state.todos].sort((a, b) => {
+      if (a.status === 'active' && b.status === 'complete') return -1;
+      if (a.status === 'complete' && b.status === 'active') return 1;
+      return 0;
+    });
+  }
+
   /**
    * Render
    * @returns {ReactElement}
    */
   render() {
-    const { filterBy } = this.props.match.params,
-          activeTodosCount = this.state.todos.filter(todo => todo.status === 'active').length,
-          completedTodosCount = this.state.todos.filter(todo => todo.status === 'complete' && todo.archive !== true).length;
+    const { filterBy } = this.props.match.params;
 
     return (
       <div className={TodosPage.baseCls}>
         <Navbar
           bulkArchiveTodos={this.bulkArchiveTodos}
-          completedTodosCount={completedTodosCount}
+          completedTodosCount={this.completedTodosCount}
           filterBy={filterBy}
         />
 
         <main className="container">
+          <h1 className="sr-only">Todos List</h1>
+
           {
             (filterBy === 'active' || !filterBy) &&
             <TodoSummary
-              activeTodosCount={activeTodosCount}
+              activeTodosCount={this.activeTodosCount}
               bulkCompleteTodos={this.bulkCompleteTodos}
             />
           }
@@ -156,7 +172,7 @@ class TodosPage extends React.Component {
 
           <Todos
             filterBy={filterBy}
-            todos={this.state.todos}
+            todos={this.sortedTodos}
             updateTodos={this.updateTodos}
           />
         </main>

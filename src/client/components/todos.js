@@ -117,6 +117,8 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
           filtered = todo.archive === true;
       }
 
+      if (filtered) return null;
+
       return (
         <Todo
           archived={todo.archive}
@@ -132,6 +134,10 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
       );
     })
   }
+
+  const hasValidItems = renderTodos().filter(todo => todo).length;
+
+  if (!hasValidItems) return <h2>No {filterBy} items.</h2>;
 
   return (
     <ul className={baseCls}>

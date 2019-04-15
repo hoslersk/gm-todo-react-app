@@ -8,7 +8,33 @@
   align-items: center;
   font-size: 1.75rem;
 
+  @media (max-width: map-get($breakpoints, md)) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   &--filtered {
     display: none;
+  }
+
+  &__delete-button {
+    @media (max-width: map-get($breakpoints, md)) {
+      display: none;
+    }
+  }
+
+  &__mobile-actions {
+    display: none;
+    margin-top: 1.5rem;
+    width: 100%;
+
+    @media (max-width: map-get($breakpoints, md)) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__mobile-action {
+    margin-top: 1rem;
   }
 }

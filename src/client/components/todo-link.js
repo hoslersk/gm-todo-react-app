@@ -26,7 +26,7 @@ const defaultProps = {
  * Link component
  * @returns {ReactElement}
  */
-const TodoLink = ({ archived, id, text, onClick, onClickArchive, status }) => {
+const TodoLink = ({ archived, archiveButtonText, id, text, onClick, onClickArchive, status }) => {
   /**
    * Base CSS class
    */
@@ -39,8 +39,6 @@ const TodoLink = ({ archived, id, text, onClick, onClickArchive, status }) => {
         checkboxCls = `${baseCls}__checkbox`,
 
         archiveButtonCls = `${baseCls}__archive-button`;
-
-  const archiveButtonText = archived ? 'Unarchive' : 'Archive';
 
   return (
     <div className={baseCls}>

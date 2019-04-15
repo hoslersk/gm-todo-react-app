@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Button from './button';
 import TodoLink from './todo-link';
@@ -38,23 +38,32 @@ const Todo = ({ archived, filtered, id, onClickArchive, onClickDelete, onClickTo
   /**
    * Base CSS class
    */
-  const baseCls = 'todo';
+  const baseCls = 'todo',
 
-  const todoCls = baseCls
-    + (status === 'complete' ? ' todo--status-complete' : '')
-    + (filtered ? ' todo--filtered' : '');
+        todoCls = baseCls
+          + (status === 'complete' ? ' todo--status-complete' : '')
+          + (filtered ? ' todo--filtered' : ''),
+
+        deleteButtonCls = `${baseCls}__delete-button`,
+
+        mobileActionsCls = `${baseCls}__mobile-actions`,
+
+        mobileActionCls = `${baseCls}__mobile-action`;
+
+  const archiveButtonText = archived ? 'Unarchive' : 'Archive';
 
   const deleteActionText = (
-    <div>
+    <Fragment>
       <span aria-hidden="true">✕</span>
       <span className="sr-only">Delete</span>
-    </div>
+    </Fragment>
   )
 
   return (
     <li className={todoCls}>
       <TodoLink
         archived={archived}
+        archiveButtonText={archiveButtonText}
         id={id}
         text={text}
         onClick={onClickTodo}
@@ -62,7 +71,26 @@ const Todo = ({ archived, filtered, id, onClickArchive, onClickDelete, onClickTo
         status={status}
       />
 
-      <Button onClick={onClickDelete} text={deleteActionText} type="muted" />
+      <Button
+        className={deleteButtonCls}
+        onClick={onClickDelete}
+        text={deleteActionText}
+        type="muted"
+      />
+
+      <div className={mobileActionsCls}>
+        <Button
+          className={mobileActionCls}
+          onClick={onClickArchive}
+          text={archiveButtonText}
+        />
+        <Button
+          className={mobileActionCls}
+          onClick={onClickDelete}
+          text="Delete"
+          type="link"
+        />
+      </div>
     </li>
   );
 }

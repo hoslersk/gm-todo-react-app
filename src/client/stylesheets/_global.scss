@@ -3,13 +3,15 @@ html {
   font-size: 16px;
   font-family: sans-serif;
   height: 100%;
+  line-height: 1.4;
+  -webkit-text-size-adjust: 100%; // 4
+  -webkit-tap-highlight-color: rgba($black, 0); // 5
 }
 
 body {
   background: map-get($colors, ui-light);
   color: map-get($colors, darkgray);
   font-size: 1rem;
-  line-height: 1.4;
   font-family: $font-family-sans-serif;
   font-weight: $font-weight-normal;
   margin: 0 auto;
@@ -41,6 +43,13 @@ button {
   font-weight: inherit;
   font-size: inherit;
   padding: 0;
+  text-transform: none;
+  cursor: pointer;
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border-style: none;
+  }
 }
 
 .container {
