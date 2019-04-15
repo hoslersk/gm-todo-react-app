@@ -8,8 +8,10 @@ const noop = () => {};
  * @private
  */
 const propTypes = {
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.node,
+  type: PropTypes.string,
 };
 
 /**
@@ -17,6 +19,7 @@ const propTypes = {
  * @private
  */
 const defaultProps = {
+  disabled: false,
   onClick: noop,
   text: '',
   type: 'default',
@@ -26,7 +29,7 @@ const defaultProps = {
  * Button component
  * @returns {ReactElement}
  */
-const Button = ({ onClick, text, type }) => {
+const Button = ({ disabled, onClick, text, type }) => {
   /**
    * Base CSS class
    */
@@ -35,7 +38,7 @@ const Button = ({ onClick, text, type }) => {
         buttonCls = `${baseCls} ${baseCls}--${type}`;
 
   return (
-    <button className={buttonCls} onClick={onClick}>
+    <button className={buttonCls} disabled={disabled} onClick={onClick}>
       {text}
     </button>
   )

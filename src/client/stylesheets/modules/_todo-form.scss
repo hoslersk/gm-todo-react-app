@@ -13,6 +13,7 @@
     background-color: map-get($colors, ui-transparent);
     background-image: linear-gradient(map-get($colors, lightgray), map-get($colors, ui-transparent));
     max-width: 100%;
+    transition: box-shadow $trans-duration ease, color $trans-duration ease;
 
     @media (max-width: map-get($breakpoints, md)) {
       width: 100%;
@@ -25,6 +26,7 @@
     &:focus {
       outline: none;
       background-image: linear-gradient(map-get($colors, gray), map-get($colors, ui-transparent));
+      box-shadow: $box-shadow;
 
       &::placeholder {
         color: map-get($colors, darkgray);

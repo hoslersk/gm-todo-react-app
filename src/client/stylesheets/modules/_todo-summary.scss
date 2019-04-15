@@ -1,0 +1,9 @@
+// TodoSummary module.
+.todo-summary {
+  margin: 2rem 0 3rem;
+
+  &__text {
+    margin-right: 1rem;
+    font-size: 1.25rem;
+  }
+}

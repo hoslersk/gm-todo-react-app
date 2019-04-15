@@ -26,7 +26,7 @@ const defaultProps = {
  * Navbar component
  * @returns {ReactElement}
  */
-const Navbar = ({ bulkArchiveTodos, filterBy }) => {
+const Navbar = ({ bulkArchiveTodos, completedTodosCount, filterBy }) => {
   /**
    * Base CSS class
    */
@@ -102,6 +102,7 @@ const Navbar = ({ bulkArchiveTodos, filterBy }) => {
 
         <Button
           className={buttonCls}
+          disabled={completedTodosCount === 0}
           onClick={bulkArchiveTodos}
           text="Archive all completed"
         />

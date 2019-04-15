@@ -4,14 +4,26 @@
   display: flex;
   padding: 0.75rem 0;
 
-  &__nav,
-  &__list {
-    display: flex;
-  }
-
   &__nav {
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__nav,
+  &__list {
+    display: flex;
+
+    @media (max-width: map-get($breakpoints, md)) {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+  }
+
+  &__list-item {
+    @media (max-width: map-get($breakpoints, md)) {
+      margin: 0 0 1rem;
+    }
   }
 
   &__nav-link {

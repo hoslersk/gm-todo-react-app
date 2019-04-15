@@ -1,24 +1,28 @@
 // Button module.
 .button {
+  transition: box-shadow $trans-duration ease;
+
   &--default {
     padding: $button-padding-y $button-padding-x;
     border-radius: $border-radius;
-    background-color: map-get($colors, ui-button-bg);
+    background-color: map-get($colors, ui-action);
     color: map-get($colors, ui-light);
     transition: background-color $trans-duration ease;
     font-size: 1rem;
 
-    &:hover,
-    &:focus {
-      background-color: darken(map-get($colors, ui-button-bg), 15%);
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+      background-color: darken(map-get($colors, ui-action), 15%);
     }
   }
 
   &--link {
     color: map-get($colors, primary);
+    font-size: 0.875rem;
+    font-weight: map-get($font-weights, bold);
 
-    &:hover,
-    &:focus {
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
       text-decoration: underline;
       color: darken(map-get($colors, primary), 15%);
     }
@@ -27,9 +31,18 @@
   &--muted {
     color: map-get($colors, gray);
 
-    &:hover,
-    &:focus {
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
       color: map-get($colors, darkgray);
     }
+  }
+
+  &:focus {
+    box-shadow: $box-shadow;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }

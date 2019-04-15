@@ -7,6 +7,7 @@ import Button from './button';
 import Navbar from './navbar';
 import TodoForm from './todo-form';
 import TodoLink from './todo-link';
+import TodoSummary from './todo-summary';
 import Todos from './todos';
 
 /**
@@ -131,19 +132,24 @@ class TodosPage extends React.Component {
    */
   render() {
     const { filterBy } = this.props.match.params,
-          activeTaskCount = this.state.todos.filter(todo => todo.status === 'active').length;
+          activeTodosCount = this.state.todos.filter(todo => todo.status === 'active').length,
+          completedTodosCount = this.state.todos.filter(todo => todo.status === 'complete' && todo.archive !== true).length;
 
     return (
       <div className={TodosPage.baseCls}>
-        <Navbar bulkArchiveTodos={this.bulkArchiveTodos} filterBy={filterBy} />
+        <Navbar
+          bulkArchiveTodos={this.bulkArchiveTodos}
+          completedTodosCount={completedTodosCount}
+          filterBy={filterBy}
+        />
 
         <main className="container">
           {
-            (filterBy === 'active' || !filterBy) && !!activeTaskCount &&
-            <div>
-              {activeTaskCount} task{activeTaskCount === 1 ? '' : 's'} remaining
-              <Button onClick={this.bulkCompleteTodos} text="Complete All" type="link" />
-            </div>
+            (filterBy === 'active' || !filterBy) &&
+            <TodoSummary
+              activeTodosCount={activeTodosCount}
+              bulkCompleteTodos={this.bulkCompleteTodos}
+            />
           }
 
           <TodoForm onSubmit={this.addTodo} />

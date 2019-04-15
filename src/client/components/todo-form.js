@@ -68,8 +68,12 @@ class TodoForm extends React.Component {
   render() {
     return (
       <form className={TodoForm.baseCls} onSubmit={this.onSubmit}>
+        <label className={`${TodoForm.baseCls}__input sr-only`} htmlFor="todo-text-input">
+          Enter a new todo.
+        </label>
         <input
           className={`${TodoForm.baseCls}__input`}
+          id="todo-text-input"
           onChange={this.onChange}
           placeholder="Add new todo..."
           value={this.state.input}
